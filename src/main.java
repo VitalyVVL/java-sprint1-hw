@@ -79,6 +79,7 @@ public class main {
             System.out.println("Введите количество шагов:");
             inputSteps = scanner.nextInt();
         }
+
         return inputSteps;
     }
 
