@@ -5,6 +5,7 @@ public class Converter {
     public Converter(int lenStep, int countCol) {
         this.lenStep = lenStep;
         this.countCal = countCol;
+
     }
 
     public double getLenStep(int steps) {
@@ -12,7 +13,8 @@ public class Converter {
     }
 
     public long getСalories(int steps) {
-        return this.countCal * steps/1000;
+        return this.countCal * steps / 1000;
     }
+
 
 }

@@ -32,38 +32,39 @@ class StepTracker {
         System.out.println("В месяце " + nameMonth + " всего было пройдено " + this.monthData[inputMonth].stepSum + " шагов");
         System.out.println("Максимальное количество шагов: " + this.monthData[inputMonth].stepMax + " среднее количество шагов за день: " + monthData[inputMonth].stepMidl);
         System.out.println("Пройденная дистанция (в км): " + converter.getLenStep(monthData[inputMonth].stepMax) + " Количество сожжённых килокалорий: " + converter.getСalories(this.monthData[inputMonth].stepSum));
-        moreActivityDay(inputMonth,3);
+        moreActivityDay(inputMonth, 3);
         for (int i = 0; i < this.monthData[inputMonth].dayMass.length; i++) {
             System.out.println("  День " + (i + 1) + ": " + monthData[inputMonth].dayMass[i].step + " план: " + this.planSteps + " количество км: " + converter.getLenStep(monthData[inputMonth].dayMass[i].step) + " количество калорий: " + converter.getСalories(monthData[inputMonth].dayMass[i].step));
         }
     }
 
-    public void moreActivityDay(int month, int period){
+    public void moreActivityDay(int month, int period) {
         int[] bestDay = new int[period];
-        int sumBestDay =0;
-        int startBestDay =0;
-        int endBestDay = period-1;
+        int sumBestDay = 0;
+        int startBestDay = 0;
+        int endBestDay = period - 1;
         int tempSumBestDay = 0;
-       // bestDay = setBestDay(bestDay,1, period, month);
-        for(int i =0;i<period;i++){
-            sumBestDay+=this.monthData[month].dayMass[i].step;
+        // bestDay = setBestDay(bestDay,1, period, month);
+        for (int i = 0; i < period; i++) {
+            sumBestDay += this.monthData[month].dayMass[i].step;
 
         }
         tempSumBestDay = sumBestDay;
-        for(int i =1;i<this.monthData[month].dayMass.length-period;i++){
-            tempSumBestDay-=this.monthData[month].dayMass[i-1].step;
-            tempSumBestDay+=this.monthData[month].dayMass[i+period].step;
-            if(tempSumBestDay>sumBestDay){
+        for (int i = 1; i < this.monthData[month].dayMass.length - period; i++) {
+            tempSumBestDay -= this.monthData[month].dayMass[i - 1].step;
+            tempSumBestDay += this.monthData[month].dayMass[i + period].step;
+            if (tempSumBestDay > sumBestDay) {
                 sumBestDay = tempSumBestDay;
-                startBestDay =i;
-                endBestDay=i+period;
+                startBestDay = i;
+                endBestDay = i + period;
             }
         }
-        System.out.println("Лучший период с "+(startBestDay+1)+" по "+(endBestDay+1) +" сумма лучших дней "+sumBestDay);
+        System.out.println("Лучший период с " + (startBestDay + 1) + " по " + (endBestDay + 1) + " сумма лучших дней " + sumBestDay);
 
     }
 
     class MonthData {
+
         DayData[] dayMass;
         int stepSum;
         int stepMax;
